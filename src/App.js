@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
-// import About from "./components/About";
+import About from "./components/About";
 import TextForm from "./components/TextForm";
 import Alert from "./components/Alert";
-// import { Route, BrowserRouter as Router, Routes} from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes} from "react-router-dom";
 
 function App(list) {
   const [mode, setmode] = useState("light");
@@ -29,23 +29,20 @@ function App(list) {
     });
     setTimeout(() => {
       setAlert(null);
-    }, 2000);
+    }, 3000);
   };
   return (
     <>
-      {/* <Router> */}
+      <Router>
 
         <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
         <Alert alert={alert} />
         <div className="my-3"></div>
-        <TextForm showAlert={showAlert} title="Enter Text below" mode={mode} />
-        {/* <Routes> */}
-          {/* <Route exact path="/about" element={<About/>}></Route> */}
-          {/* <Route exact path="/" element={<TextForm showAlert={showAlert} title="Enter Text below" mode={mode} />}></Route>
-
-           */}
-        {/* </Routes> */}
-      {/* </Router> */}
+        <Routes> 
+          <Route exact path="/about" element={<About mode={mode}/>}></Route>
+           <Route exact path="/" element={<TextForm showAlert={showAlert} title="Enter Text below" mode={mode} />}></Route>
+        </Routes>
+      </Router>
     </>
   );
 }
